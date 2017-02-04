@@ -48,7 +48,17 @@ class Psr7Adapter
         $responseStatusCode = $this->minkDriver->getStatusCode();
         $responseHeaders = $this->minkDriver->getResponseHeaders();
 
-        $response = new Response(new Stream($responseBody), $responseStatusCode, $responseHeaders);
+        $stream = $this->buildStreamWithBody($responseBody);
+
+        $response = new Response($stream, $responseStatusCode, $responseHeaders);
         return $response;
+    }
+
+    private function buildStreamWithBody(string $streamBody) : Stream
+    {
+        $streamResource = fopen('php://memory','r+');
+        fwrite($streamResource, $streamBody);
+        rewind($streamResource);
+        return new Stream($streamResource);
     }
 }
