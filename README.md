@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Sam-Burns/mink-psr7.svg?branch=master)](https://travis-ci.org/Sam-Burns/mink-psr7)
+
 # Mink PSR-7
 
 This is a PSR-7 adapter for Mink drivers, for use with Behat.  It is a work in progress.  Pull requests welcome.
