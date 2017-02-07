@@ -24,6 +24,10 @@ function generateRequestJson(RequestInterface $request) : string
 {
     $requestDetails = [
         'uri' => (string) $request->getUri(),
+        'headers' => [
+            'user-agent' => $request->getHeader('User-Agent')[0]
+        ],
+        'cookies' => $_COOKIE
     ];
 
     return json_encode($requestDetails);
