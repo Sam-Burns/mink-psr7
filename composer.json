@@ -1,4 +1,12 @@
 {
+    "name": "sam-burns/mink-psr7",
+
+    "description": "A PSR-7 adapter for Mink drivers, for use with Behat.",
+
+    "type": "library",
+
+    "license": "MIT",
+
     "require": {
         "psr/http-message": "^1.0",
         "behat/mink": "^1.7",
