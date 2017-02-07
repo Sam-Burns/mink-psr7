@@ -2,10 +2,29 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory as SymfonyRequestConverter;
+use Psr\Http\Message\RequestInterface;
 
-$requestDetails = [
-    'uri' => $request->getUri(),
-];
 
-echo json_encode($requestDetails);
+$request = produceRequest();
+$requestDetails = generateRequestJson($request);
+echo $requestDetails;
+
+
+function produceRequest() : RequestInterface
+{
+    $symfonyRequest = SymfonyRequest::createFromGlobals();
+    $symfonyRequestConverter = new SymfonyRequestConverter();
+    return $symfonyRequestConverter->createRequest($symfonyRequest);
+}
+
+
+function generateRequestJson(RequestInterface $request) : string
+{
+    $requestDetails = [
+        'uri' => (string) $request->getUri(),
+    ];
+
+    return json_encode($requestDetails);
+}

@@ -16,7 +16,8 @@
     "require-dev": {
         "symfony/http-foundation": "^3.2",
         "phpunit/phpunit": "^6.0",
-        "behat/mink-goutte-driver": "^1.2"
+        "behat/mink-goutte-driver": "^1.2",
+        "symfony/psr-http-message-bridge": "^1.0"
     },
 
     "autoload": {
